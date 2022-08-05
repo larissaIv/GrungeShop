@@ -1,0 +1,16 @@
+body {
+    margin-top: 200px;
+    text-align: center;
+    margin-left: 50px;
+    margin-right: 50px;
+    background-color: black;
+    color: white;
+    background-image: url('static/img/learn.jpg');
+    background-size: cover;
+    font-family: "PT Sans", sans-serif;
+    font-size: 20px;
+}
+
+h1{
+    color: white;
+}

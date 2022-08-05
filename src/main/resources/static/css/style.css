@@ -1,0 +1,47 @@
+body {
+    margin: 0 auto;
+    font-family: Roboto, sans-serif;
+    max-width: 1300px;
+    font-size: 20px;
+    background-image: url(static/img/grunge.jpg);
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.navigation p {
+    display: inline-block;
+    font-size: 22px;
+    width: 700px;
+}
+
+.navigation {
+    padding: 0 20px;
+}
+
+
+.navigation p span {
+    background-color: black;
+    color: white;
+}
+
+nav {
+    display: inline-block;
+}
+
+
+li {
+    display: inline-block;
+}
+
+.site-header {
+    margin-top: 100px;
+}
+
+footer {
+    position: static;
+    bottom: 0;
+    width: 100%;
+}
+
+
