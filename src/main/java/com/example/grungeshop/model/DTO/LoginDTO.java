@@ -2,15 +2,15 @@ package com.example.grungeshop.model.DTO;
 
 public class LoginDTO {
 
-    String username;
+    String email;
     String password;
 
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return email;
     }
 
-    public LoginDTO setUsername(String username) {
-        this.username = username;
+    public LoginDTO setEmail(String email) {
+        this.email = email;
         return this;
     }
 

@@ -48,12 +48,9 @@ public class HomeController {
             return "redirect:/";
         }
 
-//        long loggedUserId = this.userService.getLoggedUserId();
-
         List<OrderEntity> allProducts = this.orderService.getAllProducts();
 
         model.addAttribute("allProducts", allProducts);
-
 
         return "home";
     }
@@ -63,7 +60,7 @@ public class HomeController {
         if (!this.userService.isLoggedIn()) {
             return "redirect:/home";
         }
-        return "song-add";
+        return "add-products";
     }
 
     @PostMapping("/products/add")

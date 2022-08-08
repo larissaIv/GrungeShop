@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "offers")
+@Table(name = "orders")
 public class OrderEntity {
 
     @Id
@@ -26,7 +26,7 @@ public class OrderEntity {
     private String description;
 
     @ManyToOne
-    private UserEntity seller;
+    private UserEntity client;
 
     public long getId() {
         return id;
@@ -73,12 +73,12 @@ public class OrderEntity {
         return this;
     }
 
-    public UserEntity getSeller() {
-        return seller;
+    public UserEntity getClient() {
+        return client;
     }
 
-    public OrderEntity setSeller(UserEntity seller) {
-        this.seller = seller;
+    public OrderEntity setClient(UserEntity client) {
+        this.client = client;
         return this;
     }
 
@@ -90,7 +90,7 @@ public class OrderEntity {
                 ", imageUrl='" + imageUrl + '\'' +
                 ", price=" + price +
                 ", description='" + description + '\'' +
-                ", seller=" + seller +
+                ", client=" + client +
                 '}';
     }
 }
