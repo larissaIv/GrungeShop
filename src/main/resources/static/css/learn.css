@@ -1,16 +1,18 @@
 body {
-    margin-top: 200px;
-    text-align: center;
+    margin-top: 10px;
+    text-align: left;
     margin-left: 50px;
     margin-right: 50px;
-    background-color: black;
-    color: white;
-    background-image: url('static/img/learn.jpg');
-    background-size: cover;
+    background-color: darkgray;
+    color: black;
     font-family: "PT Sans", sans-serif;
-    font-size: 20px;
+    font-size: 18px;
+}
+
+div {
+    position: relative;
 }
 
 h1{
-    color: white;
+    color: black;
 }

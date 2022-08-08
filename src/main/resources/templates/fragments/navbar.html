@@ -2,34 +2,26 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>GrungeShop Register</title>
     <link rel="stylesheet" href="/static/css/style.css"/>
 </head>
+
 <body>
 
 <div>
     <nav class="navbar navbar-expand-lg bg-dark navbar-dark fixed-top">
-        <a class="navbar-brand" href="/"><img alt="grunge picture"
-                                              th:src="@{/img/grunge.jpg}"
-                                              class="logo">
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto col-12 justify-content-between">
                 <li class="nav-item">
-                    <a class="nav-link" th:text="#{navbar_search}" href="/offers/search">Search</a>
+                    <a class="nav-link" th:text="#{navbar_search}" href="/products/search">Search</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" th:text="#{navbar_all_products}" href="/products/all">All Products</a>
+                    <a class="nav-link" th:text="#{navbar_products}" href="/products">All Products</a>
                 </li>
                 <th:block>
 
