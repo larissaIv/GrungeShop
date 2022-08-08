@@ -1,18 +1,22 @@
 package com.example.grungeshop.model.DTO;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 public class UserRegisterDTO {
 
     @Email
-    @NotEmpty
+    @NotBlank
     private String email;
 
-    @NotEmpty
+    @NotBlank
     @Size(min = 5)
     private String password;
+
+    @NotBlank
+    @Size(min = 5)
     private String confirmPassword;
 
     @NotEmpty
@@ -66,5 +70,16 @@ public class UserRegisterDTO {
     public UserRegisterDTO setLastName(String lastName) {
         this.lastName = lastName;
         return this;
+    }
+
+    @Override
+    public String toString() {
+        return "UserRegisterDTO{" +
+                "email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", confirmPassword='" + confirmPassword + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
     }
 }

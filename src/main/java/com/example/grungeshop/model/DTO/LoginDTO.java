@@ -1,8 +1,15 @@
 package com.example.grungeshop.model.DTO;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
+
 public class LoginDTO {
 
+    @Email
+    @Min(5)
     String email;
+
+    @Min(5)
     String password;
 
     public String getEmail() {

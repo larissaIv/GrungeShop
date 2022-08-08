@@ -20,7 +20,7 @@ public class UserService {
         this.userSession = userSession;
     }
 
-    public void register(UserRegisterDTO userRegisterDTO) {
+    public boolean register(UserRegisterDTO userRegisterDTO) {
         if (!userRegisterDTO.getPassword().equals(userRegisterDTO.getConfirmPassword())) {
             throw new RuntimeException("passwords.match");
         }
@@ -38,6 +38,8 @@ public class UserService {
                 userRegisterDTO.getPassword());
 
         this.userRepository.save(user);
+
+        return true;
     }
 
     public boolean login(LoginDTO loginDTO) {

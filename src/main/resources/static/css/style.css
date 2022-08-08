@@ -1,11 +1,11 @@
 body {
-    margin: 0 auto;
     font-family: Roboto, sans-serif;
     max-width: 1300px;
     font-size: 20px;
     background-image: url(static/img/grunge.jpg);
-    background-position: center center;
+    background-position: center;
     background-size: cover;
+    margin-bottom: 5rem;
     background-attachment: fixed;
 }
 
@@ -29,6 +29,10 @@ nav {
     display: inline-block;
 }
 
+.button-holder:hover {
+    color: firebrick;
+    cursor: pointer;
+}
 
 li {
     display: inline-block;
