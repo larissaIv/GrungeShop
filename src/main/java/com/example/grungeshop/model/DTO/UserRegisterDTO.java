@@ -21,11 +21,7 @@ public class UserRegisterDTO {
 
     @NotEmpty
     @Size(min = 2, max = 20)
-    private String firstName;
-
-    @NotEmpty
-    @Size(min = 2, max = 20)
-    private String lastName;
+    private String username;
 
     public String getEmail() {
         return email;
@@ -54,21 +50,12 @@ public class UserRegisterDTO {
         return this;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getUsername() {
+        return username;
     }
 
-    public UserRegisterDTO setFirstName(String firstName) {
-        this.firstName = firstName;
-        return this;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public UserRegisterDTO setLastName(String lastName) {
-        this.lastName = lastName;
+    public UserRegisterDTO setUsername(String username) {
+        this.username = username;
         return this;
     }
 
@@ -78,8 +65,7 @@ public class UserRegisterDTO {
                 "email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", confirmPassword='" + confirmPassword + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
+                ", username='" + username + '\'' +
                 '}';
     }
 }

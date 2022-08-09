@@ -1,27 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>The Grunge!</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
 
 <body>
 <header>
     <nav class="navbar navbar-expand-lg bg-nav rounded">
-        <section class="navigation">
-            <p>"The Grunge!"</p>
-            <nav>
-                <ul>
-                    <li><a href="/templates/shirts.html" th:href="@{/templates/shirts}">SHIRTS</a></li>
-                    <li><a href="#">JEANS</a></li>
-                    <li><a href="#">DRESS</a></li>
-                    <li><a href="#">SHOES</a></li>
-                    <li><a href="#">ACCESSORIES</a></li>
-                    <li><a href="/templates/register.html">REGISTER</a></li>
-                    <li><a href="/templates/login.html">LOGIN</a></li>
-                </ul>
-            </nav>
+        <a sec:authorize="!isAuthenticated()" class="nav-link text-white active h5" th:href="@{/}">The grunge!</a>
+        <a sec:authorize="isAuthenticated()" class="nav-link text-white active h5" th:href="@{/home}">The Grunge!</a>
+        <a sec:authorize="isAuthenticated()" class="nav-link text-white active h5" th:href="@{/products/add-product}">Add product</a>
 
         <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
             <ul class="navbar-nav row">
+
                 <th:block  th:if="${@loggedUser.id == 0}">
-                <li class="nav-item col-md-4">
-                    <a class="nav-link text-white active h5" href="/templates/login">Login</a>
+                    <li class="nav-item col-md-4">
+                        <a class="nav-link text-white active h5" href="/templates/login">Login</a>
+                    </li>
+                <li sec:authorize="!isAuthenticated()" class="nav-item col-md-4">
+                    <a class="nav-link text-white active h5" th:href="@{/templates/login}">Login</a>
                 </li>
+
+                <li sec:authorize="!isAuthenticated()" class="nav-item col-md-4">
+                    <a class="nav-link text-white active h5" th:href="@{/users/register}">Register</a>
+                </li>
+
+                <li sec:authorize="isAuthenticated()" class="nav-item col-md-4">
+                    <form th:action="@{/users/logout}" th:method="post">
+                        <button type="submit" name="logout" class="btn btn-secondary btn-sm">Logout</button>
+                    </form>
+                </li>
+
+            </ul>
+        </div>
+
+        <section class="navigation">
+            <p>
+                <a href="index.html" target="_blank">The Grunge!</a>
+            </p>
+            <nav>
+                <ul>
+                    <li><a href="/templates/shirts.html" th:href="@{/templates/shirts}">SHIRTS</a></li>
+                    <li><a href="/templates/jeans.html" th:href="@{/templates/jeans}">JEANS</a></li>
+                    <li><a href="/templates/dress.html" th:href="@{/templates/dress}">DRESS</a></li>
+                    <li><a href="/templates/shoes.html" th:href="@{/templates/shoes}">SHOES</a></li>
+                    <li><a href="/templates/accessories.html" th:href="@{/templates/accessories}">ACCESSORIES</a></li>
+                    <li><a href="/templates/register.html" th:href="@{/templates/register}">REGISTER</a></li>
+                    <li><a href="/templates/login.html" th:href="@{/templates/login}">LOGIN</a></li>
+                </ul>
+            </nav>
+
+
+
                 <li class="nav-item col-md-4">
                     <a class="nav-link text-white active h5" href="/templates/register">Register</a>
                 </li>
@@ -40,6 +76,7 @@
                     </th:block>
             </ul>
         </div>
+        </section>
     </nav>
 </header>
 

@@ -8,50 +8,25 @@ import java.util.Collection;
 public class GrungeUserDetails implements UserDetails {
 
     private final Long id;
+    private final String email;
     private final String password;
     private final String username;
-    private final String firstName;
-    private final String lastName;
     private final Collection<GrantedAuthority> authorities;
 
     public GrungeUserDetails(Long id,
-                             String password,
+                             String email, String password,
                              String username,
-                             String firstName,
-                             String lastName,
                              Collection<GrantedAuthority> authorities) {
         this.id = id;
+        this.email = email;
         this.password = password;
         this.username = username;
-        this.firstName = firstName;
-        this.lastName = lastName;
         this.authorities = authorities;
     }
 
-    public String getFullName() {
-        StringBuilder fullName = new StringBuilder();
-        if (getFirstName() != null) {
-            fullName.append(getFirstName());
-        }
-        if (getLastName() != null) {
-            if (!fullName.isEmpty()) {
-                fullName.append(" ");
-            }
-            fullName.append(getLastName());
-        }
-        return fullName.toString();
-    }
 
     public Long getId() {
         return id;
-    }
-
-    private String getLastName() {
-        return lastName;
-    }
-
-    private String getFirstName() {
-        return firstName;
     }
 
 

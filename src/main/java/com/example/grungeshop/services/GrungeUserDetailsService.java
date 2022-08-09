@@ -30,8 +30,7 @@ public class GrungeUserDetailsService implements UserDetailsService {
                 user.getId(),
                 user.getEmail(),
                 user.getPassword(),
-                user.getFirstName(),
-                user.getLastName(),
+                user.getUsername(),
                 user.getUserRoles().stream().map(this::map).toList());
     }
 
