@@ -13,4 +13,7 @@ public class ProductService {
     }
 
 
+    public boolean findProductById(Long id) {
+        return productRepository.existsById(id);
+    }
 }

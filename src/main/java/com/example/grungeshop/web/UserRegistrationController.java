@@ -8,17 +8,21 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 @Controller
 public class UserRegistrationController {
 
     private final UserService userService;
+    private final LocaleResolver localeResolver;
 
-    public UserRegistrationController(UserService userService) {
+    public UserRegistrationController(UserService userService, LocaleResolver localeResolver) {
         this.userService = userService;
+        this.localeResolver = localeResolver;
     }
 
     @ModelAttribute("userRegisterDTO")
@@ -41,8 +45,9 @@ public class UserRegistrationController {
 
     @PostMapping("/register")
     public String register(@Valid UserRegisterDTO userRegisterDTO,
-                             BindingResult bindingResult,
-                             RedirectAttributes redirectAttributes) {
+                           BindingResult bindingResult,
+                           RedirectAttributes redirectAttributes,
+                           HttpServletRequest request) {
 
         if (this.userService.isLoggedIn()) {
             return "redirect:/home";
@@ -52,7 +57,7 @@ public class UserRegistrationController {
             redirectAttributes.addFlashAttribute("userRegisterDTO", userRegisterDTO);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.userRegisterDTO", bindingResult);
 
-            return "redirect:/register";
+            return "redirect:/users/register";
         }
 
         return "redirect:/login";
@@ -80,14 +85,7 @@ public class UserRegistrationController {
             redirectAttributes.addFlashAttribute("loginDTO", loginDTO);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.loginDTO", bindingResult);
 
-            return "redirect:/login";
-        }
-
-        if (!this.userService.login(loginDTO)) {
-            redirectAttributes.addFlashAttribute("loginDTO", loginDTO);
-
-            return "redirect:/login";
-
+            return "redirect:/users/login";
         }
 
         return "redirect:/home";

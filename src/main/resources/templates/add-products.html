@@ -1,33 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>Add Products</title>
+    <link rel="stylesheet" href="/static/css/style.css">
 </head>
+
 <body>
 <header>
     <nav class="navbar navbar-expand-lg bg-nav rounded">
         <section class="navigation">
-            <p>"The Grunge!"</p>
+            <p>
+                <a href="index.html" target="_blank">The Grunge!</a>
+            </p>
             <nav>
                 <ul>
-                    <li><a href="#">SHIRTS</a></li>
-                    <li><a href="#">JEANS</a></li>
-                    <li><a href="#">DRESS</a></li>
-                    <li><a href="#">SHOES</a></li>
-                    <li><a href="#">ACCESSORIES</a></li>
-                    <li><a href="#">REGISTER</a></li>
-                    <li><a href="#">LOGIN</a></li>
+                    <li><a href="/templates/shirts.html" th:href="@{/templates/shirts}">SHIRTS</a></li>
+                    <li><a href="/templates/jeans.html" th:href="@{/templates/jeans}">JEANS</a></li>
+                    <li><a href="/templates/dress.html" th:href="@{/templates/dress}">DRESS</a></li>
+                    <li><a href="/templates/shoes.html" th:href="@{/templates/shoes}">SHOES</a></li>
+                    <li><a href="/templates/accessories.html" th:href="@{/templates/accessories}">ACCESSORIES</a></li>
                 </ul>
             </nav>
-            <section class="site-header">
-                <h1>A comfort corner for THE GRUNGE</h1>
-
-                <button> LEARN MORE</button>
-
-            </section>
         </section>
 
-
+    </nav>
+</header>
 </body>
 </html>

@@ -1,10 +1,17 @@
 package com.example.grungeshop.services;
 
-import com.example.grungeshop.model.DTO.LoginDTO;
 import com.example.grungeshop.model.DTO.UserRegisterDTO;
 import com.example.grungeshop.model.entities.UserEntity;
+import com.example.grungeshop.mapper.UserMapper;
 import com.example.grungeshop.session.LoggedUser;
 import com.example.grungeshop.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -14,10 +21,17 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final LoggedUser userSession;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserService(UserRepository userRepository, LoggedUser userSession) {
+
+    private UserDetailsService userDetailsService;
+
+    @Autowired
+    public UserService(UserRepository userRepository, LoggedUser userSession, PasswordEncoder passwordEncoder, UserDetailsService userDetailsService) {
         this.userRepository = userRepository;
         this.userSession = userSession;
+        this.passwordEncoder = passwordEncoder;
+        this.userDetailsService = userDetailsService;
     }
 
     public boolean register(UserRegisterDTO userRegisterDTO) {
@@ -42,15 +56,14 @@ public class UserService {
         return true;
     }
 
-    public boolean login(LoginDTO loginDTO) {
-        Optional<UserEntity> user = this.userRepository.findByEmailAndPassword(loginDTO.getEmail(), loginDTO.getPassword());
+    public void login(String username) {
+        UserDetails userDetails = userDetailsService.loadUserByUsername(username);
 
-        if (user.isEmpty()) {
-            return false;
-        }
+        Authentication auth = new UsernamePasswordAuthenticationToken(userDetails,
+                userDetails.getPassword(),
+                userDetails.getAuthorities());
 
-        this.userSession.login(user.get());
-        return true;
+        SecurityContextHolder.getContext().setAuthentication(auth);
     }
 
     public boolean isLoggedIn() {
@@ -64,4 +77,8 @@ public class UserService {
     public long getLoggedUserId() {
         return this.userSession.getId();
     }
+
+    public void initFirstUser() {
+    }
+
 }
