@@ -7,11 +7,8 @@ import java.math.BigDecimal;
 
 @Entity
 @Table(name = "products")
-public class ProductEntity {
+public class ProductEntity extends BaseEntity{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
 
     @Column(nullable = false)
     private String name;
@@ -27,25 +24,17 @@ public class ProductEntity {
     private BigDecimal price;
 
     @ManyToOne
-    private OrderEntity offer;
+    private OrderEntity order;
 
-    public OrderEntity getOffer() {
-        return offer;
+    public OrderEntity getOrder() {
+        return order;
     }
 
-    public ProductEntity setOffer(OrderEntity offer) {
-        this.offer = offer;
+    public ProductEntity setOrder(OrderEntity order) {
+        this.order = order;
         return this;
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public ProductEntity setId(long id) {
-        this.id = id;
-        return this;
-    }
 
     public String getName() {
         return name;
@@ -86,7 +75,6 @@ public class ProductEntity {
     @Override
     public String toString() {
         return "ProductEntity{" +
-                "id=" + id +
                 ", name='" + name + '\'' +
                 ", imageUrl='" + imageUrl + '\'' +
                 ", categoryEnum=" + categoryEnum +

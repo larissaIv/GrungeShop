@@ -24,7 +24,4 @@ public class OrderService {
         return orderRepository.findAll();
     }
 
-    public boolean buyProducts(OrderDTO orderDTO) {
-        return orderRepository.count() > 0;
-    }
 }

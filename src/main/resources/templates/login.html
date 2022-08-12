@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+      xmlns:th="http://www.thymeleaf.org" >
 
 <head>
     <meta charset="UTF-8"/>
@@ -12,7 +12,7 @@
 
 <body>
 <header>
-    <header th:replace="fragments/commons::nav"></header>
+    <li><a href="/templates/index.html" th:href="@{/index}">The Grunge!</a></li>
 
 
 <main>
@@ -21,12 +21,6 @@
               th:action="@{/login}"
               th:method="post"
               th:object="${loginDTO}">
-
-            <div th:each="error: ${#fields.errors()}"
-                 th:text="${error}"
-                 class="text-danger">Password length must be min 5 characters!</div>
-
-            <div th:if="${badCredentials}" class="text-danger">Incorrect username or password!</div>
 
         <div class="form-group">
             <label for="email" class="text-white font-weight-bold">Email</label>
@@ -43,8 +37,15 @@
                     th:field="*{password}"
                     th:errorclass="is-invalid"
                     placeholder="Password"/>
-
+            <small th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
+                   id="passwordHelpInline"
+                   class="text-danger">
+            </small>
         </div>
+
+        <p th:if="${bad_credentials}" class="errors alert alert-danger">
+            Invalid username or password.
+        </p>
 
         <div class="row">
             <div class="col col-md-4">

@@ -1,10 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>Accessories</title>
+    <link rel="stylesheet" th:href="@{/css/products.css}"/>
 </head>
+
 <body>
-<a href="index.html" target="_blank">The Grunge!</a>
+<li><a href="/index.html" th:href="@{/index}">The Grunge!</a></li>
 </body>
 </html>

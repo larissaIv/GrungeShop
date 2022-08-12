@@ -1,10 +1,11 @@
 package com.example.grungeshop.web;
 
 import com.example.grungeshop.model.DTO.OrderDTO;
+import com.example.grungeshop.model.DTO.ProductDTO;
 import com.example.grungeshop.model.entities.OrderEntity;
 import com.example.grungeshop.services.OrderService;
+import com.example.grungeshop.services.ProductService;
 import com.example.grungeshop.services.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,12 +21,18 @@ import java.util.List;
 public class HomeController {
 
     private final OrderService orderService;
+    private final ProductService productService;
     private final UserService userService;
 
-    @Autowired
-    public HomeController(OrderService orderService, UserService userService) {
+    public HomeController(OrderService orderService, ProductService productService, UserService userService) {
         this.orderService = orderService;
+        this.productService = productService;
         this.userService = userService;
+    }
+
+    @ModelAttribute("productDTO")
+    public ProductDTO initProductDTO() {
+        return new ProductDTO();
     }
 
     @ModelAttribute("orderDTO")
@@ -41,30 +48,30 @@ public class HomeController {
         return "index";
     }
 
-    @GetMapping("/home")
-    public String loggedInIndex(Model model) {
+    @GetMapping("/index")
+    public String home(Model model) {
 
         if (!this.userService.isLoggedIn()) {
             return "redirect:/";
         }
 
-        List<OrderEntity> allProducts = this.orderService.getAllProducts();
+        List<OrderEntity> allProducts = this.productService.getAllProducts();
 
         model.addAttribute("allProducts", allProducts);
 
-        return "home";
+        return "index";
     }
 
     @GetMapping("/products/add")
     public String addProduct() {
         if (!this.userService.isLoggedIn()) {
-            return "redirect:/home";
+            return "redirect:/";
         }
         return "add-products";
     }
 
     @PostMapping("/products/add")
-    public String products(@Valid OrderDTO orderDTO,
+    public String products(@Valid ProductDTO productDTO,
                         BindingResult bindingResult,
                         RedirectAttributes redirectAttributes) {
 
@@ -73,13 +80,13 @@ public class HomeController {
         }
 
 
-        if (bindingResult.hasErrors() || !this.orderService.buyProducts(orderDTO)) {
-            redirectAttributes.addFlashAttribute("orderDTO", orderDTO);
-            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.orderDTO", bindingResult);
+        if (bindingResult.hasErrors() || !this.productService.buyProducts(productDTO)) {
+            redirectAttributes.addFlashAttribute("productDTO", productDTO);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.productDTO", bindingResult);
 
             return "redirect:/products/add";
         }
 
-        return "redirect:/home";
+        return "redirect:/";
     }
 }

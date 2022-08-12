@@ -5,6 +5,7 @@
     cursor: pointer;
     width: fit-content;
     margin: auto;
+    background-image: url('notFound.jpg');
 }
 
 body p {

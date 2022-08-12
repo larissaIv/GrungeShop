@@ -3,17 +3,14 @@ body {
     margin: auto 5px;
     font-size: 20px;
     background-color: darkgray;
-}
-
-.navigation p {
     display: inline-block;
-    font-size: 22px;
 }
 
 .navigation {
     padding: 0 20px;
+    display: inline-block;
+    font-size: 22px;
 }
-
 
 .navigation p span {
     background-color: black;

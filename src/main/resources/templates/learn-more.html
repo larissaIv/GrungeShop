@@ -1,16 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
     <title>The history</title>
-    <link rel="stylesheet" href="/static/css/learn.css">
+    <link rel="stylesheet" th:href="@{/css/learn.css}"/>
 </head>
 
 <body>
 <h1>THE History of Grunge</h1>
 
-<a href="index.html">Home page</a>
+<li><a href="/index.html" th:href="@{/index}">The history</a></li>
 
 <div>
     <img alt="grunge" width="300" height="300"

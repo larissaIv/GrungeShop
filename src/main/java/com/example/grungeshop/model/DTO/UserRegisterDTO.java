@@ -1,13 +1,14 @@
 package com.example.grungeshop.model.DTO;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
+import com.example.grungeshop.validation.UniqueEmail;
+import com.example.grungeshop.validation.UniqueUsername;
+
+import javax.validation.constraints.*;
 
 public class UserRegisterDTO {
 
     @Email
+    @UniqueEmail
     @NotBlank
     private String email;
 
@@ -19,7 +20,8 @@ public class UserRegisterDTO {
     @Size(min = 5)
     private String confirmPassword;
 
-    @NotEmpty
+    @UniqueUsername
+    @NotBlank
     @Size(min = 2, max = 20)
     private String username;
 

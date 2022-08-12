@@ -7,11 +7,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "baskets")
-public class BasketEntity {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+public class BasketEntity extends BaseEntity{
 
     @NotBlank
     private BigDecimal value;
@@ -25,14 +21,6 @@ public class BasketEntity {
     @OneToMany
     private List<ProductEntity> products;
 
-    public long getId() {
-        return id;
-    }
-
-    public BasketEntity setId(long id) {
-        this.id = id;
-        return this;
-    }
 
     public BigDecimal getValue() {
         return value;

@@ -1,33 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>GrungeShop</title>
-    <link rel="stylesheet" href="/static/css/style.css"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
 </head>
 <body>
 <header>
     <nav class="navbar navbar-expand-lg bg-nav rounded">
         <section class="navigation">
-            <a href="index.html" target="_blank">The Grunge!</a>
+            <li><a href="/index.html" th:href="@{/index}">The Grunge!</a></li>
             <nav>
                 <div class="dropdown">
                     <button class="dropbtn">Products</button>
                     <div class="dropdown-content">
-                        <a href="#">SHIRTS</a>
-                        <a href="#">JEANS</a>
-                        <a href="#">DRESS</a>
-                        <a href="#">SHOES</a>
-                        <a href="#">ACCESSORIES</a>
+                        <li><a href="/shirts.html" th:href="@{/shirts}">SHIRTS</a></li>
+                        <li><a href="/jeans.html" th:href="@{/jeans}">JEANS</a></li>
+                        <li><a href="/dress.html" th:href="@{/dress}">DRESS</a></li>
+                        <li><a href="/shoes.html" th:href="@{/shoes}">SHOES</a></li>
+                        <li><a href="/accessories.html" th:href="@{/accessories}">ACCESSORIES</a></li>
                     </div>
                 </div>
             </nav>
-            <section class="site-header">
-                <h1>A comfort corner for THE GRUNGE</h1>
-                <a href="learn-more.html" target="_blank">The history</a>
-            </section>
-        </section>
 
+        </section>
+    </nav>
+</header>
 </body>
 </html>

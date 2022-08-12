@@ -1,44 +1,69 @@
 <!DOCTYPE html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>GrungeShop Home</title>
-    <link rel="stylesheet" href="/static/css/style.css"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
 </head>
 
 <body>
-<div th:replace="fragments/navbar">Navbar</div>
 
 <header>
-    <nav class="navbar navbar-expand-lg bg-nav rounded">
-        <section class="navigation">
-            <p>"The Grunge!"</p>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top rounded">
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                <a sec:authorize="!isAuthenticated()" class="nav-link text-white active h5" th:href="@{/}">The grunge!</a>
+                <a sec:authorize="!isAuthenticated()" class="nav-link text-white active h5" th:href="@{/search}">Search The Grunge!</a>
+                <a sec:authorize="!isAuthenticated()" class="nav-link text-white active h5" th:href="@{/users/register}">Register</a>
+                <a sec:authorize="!isAuthenticated()" class="nav-link text-white active h5" th:href="@{/users/login}">Login</a>
 
-            <nav>
-                <div class="dropdown">
-                    <button class="dropbtn">Products</button>
-                    <div class="dropdown-content">
-                        <a href="#">SHIRTS</a>
-                        <a href="#">JEANS</a>
-                        <a href="#">DRESS</a>
-                        <a href="#">SHOES</a>
-                        <a href="#">ACCESSORIES</a>
-                    </div>
-                </div>
-            </nav>
-            <section class="site-header">
-                <h1>A comfort corner for THE GRUNGE</h1>
-                <a href="learn-more.html" target="_blank">The history</a>
+                <a sec:authorize="isAuthenticated()" class="nav-link text-white active h5" th:href="@{/home}">The Grunge!</a>
+                <a sec:authorize="isAuthenticated()" class="nav-link text-white active h5" th:href="@{/products/add-product}">Add product</a>
 
-            </section>
+    <section class="navigation">
+        <nav>
+            <ul>
+                <li><a href="/templates/shirts.html" th:href="@{/shirts}">SHIRTS</a></li>
+                <li><a href="/templates/jeans.html" th:href="@{/jeans}">JEANS</a></li>
+                <li><a href="/templates/dress.html" th:href="@{/dress}">DRESS</a></li>
+                <li><a href="/templates/shoes.html" th:href="@{/shoes}">SHOES</a></li>
+                <li><a href="/templates/accessories.html" th:href="@{/accessories}">ACCESSORIES</a></li>
+            </ul>
+        </nav>
         </section>
 
+                <th:block>
+                    <li class="nav-item" sec:authorize="isAuthenticated()">
+                        <div class="form-inline my-2 my-lg-0 px-3">
+                            <div class="text-white" th:text="#{registration_subject}">Welcome</div>
+                            <form th:action="@{/logout}" th:method="post">
+                                <input class="btn btn-link nav-link" type="submit" th:value="#{logout}">
+                            </form>
+                        </div>
+                    </li>
+                </th:block>
 
-</nav>
+
+                <li class="nav-item">
+                    <form th:method="get">
+                        <label class="text-white" th:text="${language}" for="lang" >Language</label>
+                        <select
+                                onchange="this.form.submit()"
+                                id="lang"
+                                name="lang">
+                            <option value="en_US" th:selected="${#locale.toString()} == 'en_US'">English</option>
+                            <option value="bg_BG" th:selected="${#locale.toString()} == 'bg_BG'">Български</option>
+                        </select>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </nav>
 </header>
+
+
 </body>
 </html>

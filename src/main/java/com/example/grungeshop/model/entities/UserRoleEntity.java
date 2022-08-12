@@ -6,25 +6,11 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "user_roles")
-public class UserRoleEntity {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+public class UserRoleEntity extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private UserRoleEnum userRole;
-
-
-    public long getId() {
-        return id;
-    }
-
-    public UserRoleEntity setId(long id) {
-        this.id = id;
-        return this;
-    }
 
     public UserRoleEnum getUserRole() {
         return userRole;
@@ -38,7 +24,6 @@ public class UserRoleEntity {
     @Override
     public String toString() {
         return "UserRoleEntity{" +
-                "id=" + id +
                 ", userRole=" + userRole +
                 '}';
     }

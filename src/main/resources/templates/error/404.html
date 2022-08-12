@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -10,7 +9,7 @@
         initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Grunge not found!</title>
-    <link rel="stylesheet" href="/static/css/page404.css">
+    <link rel="stylesheet" th:href="@{/css/page404.css}"/>
 </head>
 
 <body>
@@ -19,8 +18,8 @@
   <div class="container-fluid">
     <div class="row">
       <div class="not_found">
-        <a href="../index.html">
-          <img src="/static/img/notFound.jpg" alt="logo">
+        <a href="../index.html" th:href="@{/templates/index}">
+            <img th:src="@{/img/notFound.jpg}" alt="404" />
         </a>
 
       </div>

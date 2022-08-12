@@ -12,17 +12,14 @@
 
 <body>
 <header>
-    <nav class="navbar navbar-expand-lg bg-nav rounded">
-        <section class="navigation">
-            <a href="index.html" target="_blank">The Grunge!</a>
-        </section>
+    <li><a href="/templates/index.html" th:href="@{/index}">The Grunge!</a></li>
 
 <main>
     <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Register</span></h1>
     <hr class="hr-3 w-25 bg-white"/>
 
     <form class="mx-auto w-25 bg-blur rounded"
-          th:action="@{/register}"
+          th:action="@{/users/register}"
           th:method="post"
           th:object="${userRegisterDTO}" >
 
@@ -36,7 +33,9 @@
                    class="form-control"
                    id="email"
                    name="email"/>
-            <small class="text-danger invalid-feedback">Email cannot be empty!</small>
+            <small th:if="${#fields.hasErrors('email')}" th:errors="*{email}" id="emailHelpInline"
+                   class="text-danger">
+            </small>
         </div>
 
         <div class="form-group">
@@ -49,7 +48,12 @@
                    th:field="*{password}"
                    th:errorclass="'is-invalid alert-danger'"
                    name="password"/>
-            <small class="text-danger invalid-feedback">Password length must be min 5 characters!</small>
+
+            <small th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
+                   id="passwordHelpInline"
+                   class="text-danger">
+            </small>
+
         </div>
 
         <div class="form-group">
@@ -62,7 +66,10 @@
                    th:field="*{confirmPassword}"
                    th:errorclass="'is-invalid alert-danger'"
                    name="confirmPassword"/>
-            <small class="text-danger invalid-feedback"></small>
+            <small th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}"
+                   id="confirmPasswordHelpInline"
+                   class="text-danger">
+            </small>
         </div>
 
         <div class="form-group">
@@ -75,7 +82,10 @@
                    th:field="*{username}"
                    th:errorclass="'is-invalid alert-danger'"
                    name="username"/>
-            <small class="text-danger invalid-feedback"></small>
+            <small th:if="${#fields.hasErrors('username')}" th:errors="*{username}"
+                   id="usernameHelpInline"
+                   class="text-danger">
+            </small>
         </div>
 
         <div class="button-holder d-flex justify-content-center">

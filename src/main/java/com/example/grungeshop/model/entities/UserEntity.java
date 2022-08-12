@@ -7,11 +7,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "users")
-public class UserEntity {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+public class UserEntity extends BaseEntity{
 
     @Column(nullable = false, unique = true)
     private String email;
@@ -20,7 +16,7 @@ public class UserEntity {
     @Size(min = 5)
     private String password;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String username;
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -33,14 +29,6 @@ public class UserEntity {
         this();
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public UserEntity setId(long id) {
-        this.id = id;
-        return this;
-    }
 
     public String getEmail() {
         return email;

@@ -1,26 +1,27 @@
 package com.example.grungeshop.model.DTO;
 
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import java.math.BigDecimal;
 
 public class ProductDTO {
 
-    @Positive
-    private long id;
+    @NotEmpty
+    private Long id;
 
     @NotNull
     private String name;
     private String image;
 
-    @NotNull
+    @NotEmpty
     private BigDecimal price;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public ProductDTO setId(long id) {
+    public ProductDTO setId(Long id) {
         this.id = id;
         return this;
     }
